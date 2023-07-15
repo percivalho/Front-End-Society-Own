@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "title": "Ed Sheeran's Top Hits",
+    "user_id": 1,
+    "imagelink": "edsheeran.jpg",
+    "public": 1
+  },
+  {
+    "id": 2,
+    "title": "Coding Soundtrack",
+    "user_id": 2,
+    "imagelink": "",
+    "public": 0
+
+  },
+  {
+    "id": 3,
+    "title": "Pop Hits",
+    "user_id": 3,
+    "imagelink": "pop.jpg",
+    "public": 1
+
+  },
+  {
+    "id": 4,
+    "title": "UK Top 10",
+    "user_id": 4,
+    "imagelink": "UKtop10.jpg",
+    "public": 1
+
+  },
+  {
+    "id": 5,
+    "title": "Classic Rock",
+    "user_id": 1,
+    "imagelink": "classrock.jpg",
+    "public": 1
+
+  },
+  {
+    "id": 6,
+    "title": "Taylor Swift Eras Tour",
+    "user_id": 2,
+    "imagelink": "taylorswift.jpg",
+    "public": 1
+
+  },
+  {
+    "id": 7,
+    "title": "Adele's Heartfelt Ballads",
+    "user_id": 3,
+    "imagelink": "adele.png",
+    "public": 1
+
+  },
+  {
+    "id": 8,
+    "title": "Dance Party",
+    "user_id": 4,
+    "imagelink": "danceparty.jpeg",
+    "public": 1
+
+  },
+  {
+    "id": 9,
+    "title": "My Playlist",
+    "user_id": 5,
+    "imagelink": "",
+    "public": 0
+  }  
+]
