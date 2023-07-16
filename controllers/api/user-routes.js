@@ -9,7 +9,8 @@ router.post('/signup', async (req, res) => {
     const dbUserData = await User.create({
       username: req.body.username,
       password: req.body.password,
-      sound: "Ping1.mp3",
+      //sound: "Ping1.mp3",
+      sound: req.body.sound,
     });
     console.log(dbUserData)
     // Create a playlist for the user
@@ -23,6 +24,7 @@ router.post('/signup', async (req, res) => {
     req.session.save(() => {
       req.session.loggedIn = true;
       req.session.username = req.body.username;
+      req.session.sound = req.body.sound;
 
       // redirect back to / after signup successfully
       res.redirect('/');        

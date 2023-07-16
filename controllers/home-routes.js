@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Playlist, Comment, Artist, Song, PlaylistSong } = require('../models');
+const { User, Playlist, Comment, Artist, Song, PlaylistSong, Soundfile } = require('../models');
 const withAuth = require('../utils/auth');
 const { Op } = require('sequelize');
 
@@ -305,8 +305,22 @@ router.get('/login', (req, res) => {
 });
 
 // Signup
-router.get('/signup', (req, res) => {
-  res.render('signup');
+router.get('/signup', async (req, res) => {
+  const dbsoundfileData = await Soundfile.findAll();
+    /*include: [{
+        model: Artist
+    }]*/
+//}); 
+  await console.log(dbsoundfileData);
+  if (dbsoundfileData){
+    const soundfiles = dbsoundfileData.map((soundfile) =>
+      soundfile.get({ plain: true })
+    );
+
+    console.log(soundfiles);
+    //res.render('playlist', { playlist, loggedIn: req.session.loggedIn });
+    res.render('signup', {soundfiles});
+  }
 });
 
 

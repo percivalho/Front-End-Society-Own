@@ -16,6 +16,16 @@
             </div>
         </div>
         <div class="form-group">
+            <label for="login-sound">Choose a login sound:</label>
+            <div class="input-container">
+                <select id="login-sound">
+                    {{#each soundfiles}}
+                    <option value="{{id}}">{{filename}}</option>
+                    {{/each}}
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
             <button class="btn btn-primary" type="submit">signup</button>
         </div>
         </form>
