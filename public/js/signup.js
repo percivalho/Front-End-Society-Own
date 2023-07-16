@@ -32,6 +32,16 @@ const signupFormHandler = async (event) => {
 // Add event listener
 selectElement.addEventListener("change", function() {
   // Get the selected option text
-  let selectedText = selectElement.options[selectElement.selectedIndex].text;
-  console.log(selectedText); 
+  let sound = selectElement.options[selectElement.selectedIndex].text;
+  console.log(sound); 
+  let soundSrc = './assets/' + sound;
+  let soundToPlay = new Howl({
+      src: [soundSrc],
+      autoplay: true 
+  });
+  message = soundSrc;
+  console.log(message);
+  
+  // Play the sound
+  soundToPlay.play();  
 });

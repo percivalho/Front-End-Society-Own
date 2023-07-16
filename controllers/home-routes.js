@@ -10,28 +10,12 @@ router.get('/', async (req, res) => {
       where: {
         public: 1
       },      
-      /*include: [
-        {
-          model: Song,
-          through: PlaylistSong,
-          as: 'songs',
-          include: [
-            {
-              model: Artist,
-              as: 'artist',
-            },
-          ],
-        },
-      ],*/
       order: [['createdAt', 'DESC']],      
     });
 
     const playlists = dbPlaylistData.map((playlist) =>
       playlist.get({ plain: true })
     );
-    //console.log(playlists);
-    //console.log(playlists[0].songs);
-    //console.log(req.session);
     res.render('homepage', {
       playlists,
       loggedIn: req.session.loggedIn,
@@ -44,21 +28,12 @@ router.get('/', async (req, res) => {
   }
 });
 
-// GET one blog only, and by id
+// GET one public playlist only, and by id
 router.get('/playlist/:id', withAuth, async (req, res) => {
-  // If the user is logged in, allow them to view the blog
+  // If the user is logged in, allow them to view the public playlist
   try {
     const dbPlaylistData = await Playlist.findByPk(req.params.id, {
       include: [
-        /*{
-          model: Comment,
-          include: [
-            {
-              model: User,
-              attributes: ['username'],
-            },
-          ],
-        },*/
         {
           model: Song,
           through: PlaylistSong,
@@ -81,45 +56,7 @@ router.get('/playlist/:id', withAuth, async (req, res) => {
 });
 
 
-
-
-
-// Post Comment on a blog post
-router.post('/api/playlist/:id', withAuth, async (req, res) => {
-
-  try {
-    // retrieve the user.id from username
-    const dbUserData = await User.findOne({
-      where: {
-        username: req.session.username,
-      },
-    });
-
-    if (dbUserData.id) {
-      try {
-        const dbCommentData = await Comment.create({
-          blog_id: req.params.id,
-          description: req.body.comment,
-          user_id: dbUserData.id
-        });
-        req.session.save(() => {
-          req.session.loggedIn = true;
-          req.session.username = req.session.username;
-    
-          res.status(200).json(dbCommentData);
-        });
-      } catch (err) {
-        console.log(err);
-        res.status(500).json(err);
-      }
-    }
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
-
-// myPlaylist
+// retrieve myPlaylist
 router.get('/myPlaylist', withAuth, async (req, res) => {
   try {
     // find  the user.id from username
@@ -152,9 +89,6 @@ router.get('/myPlaylist', withAuth, async (req, res) => {
     
         if (dbPlaylistData){
           const playlist = dbPlaylistData.get({ plain: true });
-          //console.log("========20230714========")
-          //console.log(playlist);
-          //console.log(playlist.songs);
           res.render('myPlaylist', { playlist, loggedIn: req.session.loggedIn });
         }
       } catch (err) {
@@ -168,7 +102,7 @@ router.get('/myPlaylist', withAuth, async (req, res) => {
   }
 });
 
-// myPlaylist Search
+// Search for song in my myplaylist
 router.get('/myResult/search', withAuth, async (req, res) => {
   try {
     console.log(req.query);

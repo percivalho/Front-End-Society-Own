@@ -17,7 +17,7 @@ router.post('/signup', async (req, res) => {
     const dbPlaylistData = await Playlist.create({
       title: 'My Playlist',
       user_id: dbUserData.id,  // use the id of the user just created
-      imagelink: '',  // specify default image link or leave empty
+      imagelink: '',  // specify default image link or leave empty at the moment
       public: 0,  
     });
 
@@ -65,7 +65,6 @@ router.post('/login', async (req, res) => {
       req.session.loggedIn = true;
       req.session.username = req.body.username;
       req.session.sound = dbUserData.sound;
-
 
       // redirect to / on successful login
       res.redirect('/');        
