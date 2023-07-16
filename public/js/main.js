@@ -1,8 +1,9 @@
 
 document.addEventListener("DOMContentLoaded", function() {
-    // Create a new Howl instance
+
     let sound = window.sound;
-    let soundSrc = './assets/' + sound;
+    let soundSrc = './assets/sound/' + sound;
+    // Create a new Howl instance
     let soundToPlay = new Howl({
         src: [soundSrc],
         autoplay: true 

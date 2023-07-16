@@ -143,18 +143,6 @@ button {
   width: 100%;
 }
 
-/* new post button on the lower right-hand corner*/
-.new-post-button {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  padding: 10px 20px;
-  background-color: #13293d;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
-
 /* effect on hover on button*/
 .new-post-button:hover {
   background-color: #1e3d5a;
@@ -212,23 +200,28 @@ a {
   display: flex;
 }
 
+/* search aside section*/
 .search {
   width: 30%; 
   margin-right: 2%; 
 }
 
+/* this one for public playlist on songs*/
 .card1{
   width:100%;
 }
 
+/* this one for myplaylist on songs as there is aside that use 30% .search*/
 .mycard {
   width: 68%; 
 }
 
+/* to control display and hidden for myplaylist/search result*/
 .visible {
   display: block;
 }
 
+/* to control display and hidden for myplaylist/search result*/
 .hidden {
   display: none;
 }

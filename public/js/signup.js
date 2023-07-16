@@ -1,4 +1,4 @@
-// Get select element
+// Get select element (drop down box)
 let selectElement = document.getElementById("login-sound");
 
 
@@ -29,18 +29,15 @@ const signupFormHandler = async (event) => {
     .addEventListener('submit', signupFormHandler);
 
 
-// Add event listener
+// Add event listener for changing the option in dropdowm box
 selectElement.addEventListener("change", function() {
   // Get the selected option text
   let sound = selectElement.options[selectElement.selectedIndex].text;
-  console.log(sound); 
-  let soundSrc = './assets/' + sound;
+  let soundSrc = './assets/sound/' + sound;
   let soundToPlay = new Howl({
       src: [soundSrc],
       autoplay: true 
   });
-  message = soundSrc;
-  console.log(message);
   
   // Play the sound
   soundToPlay.play();  

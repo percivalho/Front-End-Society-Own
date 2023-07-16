@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
       where: {
         public: 1
       },      
-      order: [['createdAt', 'DESC']],      
+      //order: [['createdAt', 'DESC']],      
     });
 
     const playlists = dbPlaylistData.map((playlist) =>
@@ -56,7 +56,7 @@ router.get('/playlist/:id', withAuth, async (req, res) => {
 });
 
 
-// retrieve myPlaylist
+// retrieve myPlaylist (private playlist for your own account)
 router.get('/myPlaylist', withAuth, async (req, res) => {
   try {
     // find  the user.id from username
@@ -228,7 +228,6 @@ router.delete('/myPlaylist/:id', withAuth, async (req, res) => {
 
 
 
-
 // Login 
 router.get('/login', (req, res) => {
   if (req.session.loggedIn) {
@@ -240,19 +239,14 @@ router.get('/login', (req, res) => {
 
 // Signup
 router.get('/signup', async (req, res) => {
+  // to show the soundfile available to frontend dropdown box
   const dbsoundfileData = await Soundfile.findAll();
-    /*include: [{
-        model: Artist
-    }]*/
-//}); 
-  await console.log(dbsoundfileData);
   if (dbsoundfileData){
     const soundfiles = dbsoundfileData.map((soundfile) =>
       soundfile.get({ plain: true })
     );
 
     console.log(soundfiles);
-    //res.render('playlist', { playlist, loggedIn: req.session.loggedIn });
     res.render('signup', {soundfiles});
   }
 });

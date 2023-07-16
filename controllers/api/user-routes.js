@@ -18,7 +18,7 @@ router.post('/signup', async (req, res) => {
       title: 'My Playlist',
       user_id: dbUserData.id,  // use the id of the user just created
       imagelink: '',  // specify default image link or leave empty at the moment
-      public: 0,  
+      public: 0,      // 0 - private playlist
     });
 
     req.session.save(() => {
