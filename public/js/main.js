@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let soundSrc = './assets/sound/' + sound;
     console.log(window.soundPlay);
     console.log(soundSrc);
-    if (window.soundPlay <= 1) {
+    if (window.soundPlay <= 2) {
         // Create a new Howl instance
         let soundToPlay = new Howl({
             src: [soundSrc],
