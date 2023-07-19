@@ -74,26 +74,30 @@ async function addSongToPlaylist(event) {
     .addEventListener('submit', submitCommentHandler);
 
 
-function createBubble(text) {
+function createBubble(size1, size2, offset1, offset2, text) {
     const bubble = document.createElement('div');
     bubble.classList.add('bubble');
     
     bubble.textContent = text;
     
-    let size = (Math.random() * 50 + 150);
+    let size = (Math.random() * size1 + size2);
     bubble.style.width = bubble.style.height = size + 'px';
     
-    bubble.style.fontSize = (size * 0.15) + 'px';
+    bubble.style.fontSize = (size * 0.1) + 'px';
     
-    bubble.style.left = Math.random() * document.body.clientWidth + 'px';
+    bubble.style.left = (offset1 + Math.random() * (document.body.clientWidth*offset2)) + 'px';
     
+    let animationDuration = Math.random() * 2 + 4;
     bubble.style.animationDuration = (Math.random() * 2 + 4) + 's';
 
     document.body.appendChild(bubble);
     
     setTimeout(() => {
         document.body.removeChild(bubble);
-    }, 6000);
+    }, 8000);
+    /*setTimeout(() => {
+      document.body.removeChild(bubble);
+    }, animationDuration * 2000);     */
 }
 
 
@@ -107,11 +111,17 @@ document.addEventListener("DOMContentLoaded", function() {
   //console.log(window.comment)
   //let bubbleArray = (window.comment).map(comment => comment.description);
   console.log(bubbleArray);
-  let delay = 3000; // 3 seconds delay
+  let delay = 1500; // 1.5 seconds delay
+  let randomOffset = 500; 
 
+  for (let i = 0; i < 100; i++) {
+    setTimeout(function() {
+        createBubble(100, 40, 0, 1, "");
+    }, i * delay/15 + Math.random() * randomOffset/15);
+}        
   for (let i = 0; i < bubbleArray.length; i++) {
       setTimeout(function() {
-          createBubble(bubbleArray[i]);
-      }, i * delay);
+          createBubble(100, 150, 100, 0.7, bubbleArray[i]);
+      }, i * delay + Math.random() * randomOffset);
   }        
 });
