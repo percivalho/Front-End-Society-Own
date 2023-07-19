@@ -92,6 +92,9 @@ router.get('/playlist/:id', withAuth, async (req, res) => {
       console.log(playlist);
       console.log(commentsArrayString);
       //console.log(playlist.comments)
+
+      console.log(playlist);
+      //console.log(playlist.comments)
       res.render('playlist', { 
         playlist, 
         commentsArrayString, 

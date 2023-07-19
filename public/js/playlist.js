@@ -72,53 +72,56 @@ async function addSongToPlaylist(event) {
   document
     .querySelector('.comment-form')
     .addEventListener('submit', submitCommentHandler);
+  
 
-
+/**
+ * to create bubbles 
+ * @param size1 - bubble size
+ * @param size2 - smallest bubble size
+ * @param offset1 - left offset so that the bubble not to the left
+ * @param offset1 - the right offset, in ratio of the whole width
+ * @param text - if text to display in the bubble
+ * @returns None
+ */    
 function createBubble(size1, size2, offset1, offset2, text) {
-    const bubble = document.createElement('div');
-    bubble.classList.add('bubble');
-    
-    bubble.textContent = text;
-    
-    let size = (Math.random() * size1 + size2);
-    bubble.style.width = bubble.style.height = size + 'px';
-    
-    bubble.style.fontSize = (size * 0.1) + 'px';
-    
-    bubble.style.left = (offset1 + Math.random() * (document.body.clientWidth*offset2)) + 'px';
-    
-    let animationDuration = Math.random() * 2 + 4;
-    bubble.style.animationDuration = (Math.random() * 2 + 4) + 's';
+  const bubble = document.createElement('div');
+  bubble.classList.add('bubble');
+  
+  bubble.textContent = text;
+  
+  let size = (Math.random() * size1 + size2);
+  bubble.style.width = bubble.style.height = size + 'px';
+  
+  bubble.style.fontSize = (size * 0.1) + 'px';
+  
+  bubble.style.left = (offset1 + Math.random() * (document.body.clientWidth*offset2)) + 'px';
+  
+  let animationDuration = Math.random() * 2 + 4;
+  bubble.style.animationDuration = (Math.random() * 2 + 4) + 's';
 
-    document.body.appendChild(bubble);
-    
-    setTimeout(() => {
-        document.body.removeChild(bubble);
-    }, 8000);
-    /*setTimeout(() => {
+  document.body.appendChild(bubble);
+  
+  setTimeout(() => {
       document.body.removeChild(bubble);
-    }, animationDuration * 2000);     */
+  }, 8000);
 }
-
-
+    
 document.addEventListener("DOMContentLoaded", function() {
 
   console.log(window.comment1);
-  //var bubbleArray = JSON.parse(window.comment1);
   var bubbleArray = window.comment1;
 
-  //var bubbleArray = globalCommentsArray;
-  //console.log(window.comment)
-  //let bubbleArray = (window.comment).map(comment => comment.description);
   console.log(bubbleArray);
   let delay = 1500; // 1.5 seconds delay
-  let randomOffset = 500; 
+  let randomOffset = 500; // make it more random
 
+  // small bubbles without comments
   for (let i = 0; i < 100; i++) {
     setTimeout(function() {
         createBubble(100, 40, 0, 1, "");
     }, i * delay/15 + Math.random() * randomOffset/15);
-}        
+  }        
+  // bubbles with comments
   for (let i = 0; i < bubbleArray.length; i++) {
       setTimeout(function() {
           createBubble(100, 150, 100, 0.7, bubbleArray[i]);
